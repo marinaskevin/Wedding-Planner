@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Weddings";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <span class="align-bottom">
+            <h1>Welcome to the Wedding Planner</h1>
+        </span>
+        <span class="align-bottom pull-right">
+            <a href="Logout">Log Out</a>
+        </span>
+    </div>
+</div>
+
+<hr>
+
+<table class="table table-striped table-hover rounded-20">
+    <thead>
+        <tr>
+            <th class="col-sm-4 field-label active">Wedding</th>
+            <th class="col-sm-4 field-label active">Date</th>
+            <th class="col-sm-2 field-label active">Guests</th>
+            <th class="col-sm-2 field-label active">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @model Wedding_Planner.Models.Wedding
+    @foreach(var Wedding in ViewBag.Weddings)
+    {
+        <tr>
+            <td class="col-sm-4"><a href="Wedding/@(Wedding.WeddingId)">@Wedding.WedderOne &amp; @Wedding.WedderTwo</a></td>
+            <td class="col-sm-4">@Wedding.WeddingDate.ToString("MMM d yyyy")</td>
+            <td class="col-sm-2">
+            @{
+                int count = 0;
+                foreach(var RSVP in ViewBag.AllRSVPs)
+                {
+                    if(RSVP.WeddingId == Wedding.WeddingId)
+                    {
+                        count++;
+                    }
+                    
+                }
+                <span>@count</span>
+            }
+            </td>
+            <td class="col-sm-2">
+                @{
+                    bool creator = false;
+                    string href = "/Wedding/"+Wedding.WeddingId+"/RSVP/Create";
+                    string label = "RSVP";
+                    if(Wedding.CreatorId == ViewBag.User.UserId)
+                    {
+                        creator = true;
+                        href = "/Wedding/"+Wedding.WeddingId+"/Delete";
+                        label = "Delete";
+                    }
+                    if(!creator)
+                    {
+                        foreach(var Joined in ViewBag.RSVPs)
+                        {
+                            if(Joined.WeddingId == Wedding.WeddingId)
+                            {
+                                href = "/Wedding/"+Wedding.WeddingId+"/RSVP/Delete";
+                                label = "Un-RSVP";
+                                break;
+                            }
+                        }
+                    }
+                    <a href="@href">@label</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div class="container">
+    <a href="/Wedding/New" class="btn btn-primary pull-right">New Wedding</a>
+</div>

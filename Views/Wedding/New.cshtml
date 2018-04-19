@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Weddings";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <span class="align-bottom">
+            <h1>Plan Your Wedding</h1>
+        </span>
+        <span class="align-bottom pull-right">
+            <nobr><a href="/Wedding">Dashboard</a> | <a href="/User/Logout">Log Out</a></nobr>
+        </span>
+    </div>
+</div>
+
+<hr>
+
+@using Wedding_Planner
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Wedding_Planner.Models.Wedding
+
+    <div class="col-md-6">
+        <form action="Create" method="POST">
+            <input type="hidden" name="CreatorId" value="@ViewBag.UserId">
+            <label asp-for="WedderOne" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="WedderOne" class="form-control">
+                <span asp-validation-for="WedderOne" class="text-danger"></span>
+            </div>
+            <label asp-for="WedderTwo" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="WedderTwo" class="form-control">
+                <span asp-validation-for="WedderTwo" class="text-danger"></span>
+            </div>
+            <label asp-for="WeddingDate" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="WeddingDate" class="form-control" type="date">
+                <span asp-validation-for="WeddingDate" class="text-danger"></span>
+            </div>
+            <label asp-for="WeddingAddress" class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <input asp-for="WeddingAddress" class="form-control">
+                <span asp-validation-for="WeddingAddress" class="text-danger"></span>
+            </div>
+            <div class="col-md-4"><button class="btn btn-primary pull-right">Create</button></div>
+        </form>
+    </div>

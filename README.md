@@ -1,4 +1,4 @@
-# Wedding-Planner
+# Wedding Planner
 A C# program which allows registered users to create, delete, RSVP, and Un-RSVP wedding events
 
 # Instructions

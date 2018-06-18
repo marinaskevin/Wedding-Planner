@@ -15,7 +15,7 @@ A C# program which allows registered users to create, delete, RSVP, and Un-RSVP 
 }
 ```
 
-* In the command line, run the following:
+* In the command line, run the following in the Wedding Planner project directory:
 
 ```
 dotnet restore

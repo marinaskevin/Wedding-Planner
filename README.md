@@ -2,7 +2,7 @@
 A C# program which allows registered users to create, delete, RSVP, and Un-RSVP wedding events
 
 # Instructions
-* Navigate to the Wedding Planner project directory
+* Navigate to the Wedding Planner project directory.
 * Create a file called "appsettings.json" with the following:
 
 ```
@@ -22,3 +22,5 @@ dotnet restore
 dotnet build
 dotnet run
 ````
+
+* In your internet browser, navigate to http://localhost:5000/
